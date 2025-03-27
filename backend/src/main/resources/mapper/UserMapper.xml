@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.workusercentre.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.work.workusercentre.entity.User">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="userAccount" column="user_account" jdbcType="VARCHAR"/>
+            <result property="userWxUnion" column="user_wx_union" jdbcType="VARCHAR"/>
+            <result property="userMpOpen" column="user_mp_open" jdbcType="VARCHAR"/>
+            <result property="userEmail" column="user_email" jdbcType="VARCHAR"/>
+            <result property="userPhone" column="user_phone" jdbcType="VARCHAR"/>
+            <result property="userIdent" column="user_ident" jdbcType="VARCHAR"/>
+            <result property="userPasswd" column="user_passwd" jdbcType="VARCHAR"/>
+            <result property="userAvatar" column="user_avatar" jdbcType="VARCHAR"/>
+            <result property="userTags" column="user_tags" jdbcType="VARCHAR"/>
+            <result property="userNick" column="user_nick" jdbcType="VARCHAR"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="userProfile" column="user_profile" jdbcType="VARCHAR"/>
+            <result property="userBirthday" column="user_birthday" jdbcType="VARCHAR"/>
+            <result property="userCountry" column="user_country" jdbcType="VARCHAR"/>
+            <result property="userAddress" column="user_address" jdbcType="VARCHAR"/>
+            <result property="userRole" column="user_role" jdbcType="TINYINT"/>
+            <result property="userLevel" column="user_level" jdbcType="TINYINT"/>
+            <result property="userGender" column="user_gender" jdbcType="TINYINT"/>
+            <result property="deleted" column="deleted" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_account,user_wx_union,user_mp_open,user_email,user_phone,
+        user_ident,user_passwd,user_avatar,user_tags,user_nick,
+        user_name,user_profile,user_birthday,user_country,user_address,
+        user_role,user_level,user_gender,deleted,create_time,
+        update_time
+    </sql>
+</mapper>

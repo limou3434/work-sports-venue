@@ -1,0 +1,10 @@
+#otherPage {
+    border-radius: 8px; /* 适用于整个容器 */
+    overflow: hidden; /* 确保圆角生效 */
+}
+
+.grid-item {
+    border-radius: 8px; /* 适用于每个 item */
+    overflow: hidden;
+}
+

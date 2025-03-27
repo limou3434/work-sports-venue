@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+依赖文件
+
+@author <a href="https://github.com/xiaogithuboo">limou3434</a>
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.work</groupId>
+    <artifactId>backend</artifactId>
+    <version>0.0.1</version>
+    <name>backend</name>
+    <description>backend</description>
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+    <dependencies>
+
+        <!-- Spring -->
+        <dependency>
+            <!-- 引入 Spring Boot 的 Web 相关依赖, 支持 RESTful API 开发, 包含: Spring MVC(用于处理 HTTP 请求)、Jackson(用于 JSON 序列化)、Tomcat(默认内嵌的 Web 服务器) -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <!-- 提供开发时的工具，比如热加载、自动重启等, 提高开发效率 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <!-- 用于处理 @ConfigurationProperties 注解(改注解可以读取 application 的内容)的元数据生成, 方便 IDE 提示 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <!-- 提供 Spring Boot 相关的测试框架, 包含: JUnit(单元测试)、Mockito(Mock 框架)、Spring Boot Test(集成测试)) -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- 提供 Spring AOP 面向切面编程功能, 用于实现日志或权限控制等横切逻辑 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!-- MyBatis -->
+        <dependency>
+            <!-- MySQL JDBC 驱动(接口实现), 用于连接 MySQL 数据库 -->
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <!-- MyBatis Plus 是 MyBatis 的增强版, 提供了 CRUD 的封装, 减少了大量的 SQL 编写 -->
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>3.5.10.1</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            &lt;!&ndash; 编写关于 MyBatis 的测试代码可以用上 &ndash;&gt;-->
+<!--            <groupId>org.mybatis.spring.boot</groupId>-->
+<!--            <artifactId>mybatis-spring-boot-starter-test</artifactId>-->
+<!--            <version>3.0.4</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--        &lt;!&ndash; MyBatis + Spring Boot 整合的 Starter, 简化 MyBatis 的配置和使用(如果不使用 MyBatisPlus 则可以考虑直接使用 MyBatis) &ndash;&gt;-->
+<!--           <groupId>org.mybatis.spring.boot</groupId>-->
+<!--           <artifactId>mybatis-spring-boot-starter</artifactId>-->
+<!--           <version>3.0.4</version>-->
+<!--        </dependency>-->
+
+        <!-- Lombok -->
+        <dependency>
+            <!-- 减少 Java 代码中的样板代码, 自动生成 getter/setter、toString()、equals() -->
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Commons Lang3-->
+        <dependency>
+            <!-- Apache 提供的 Java 工具类库, 包含: StringUtils(字符串处理)、ObjectUtils(对象工具)、RandomStringUtils(随机字符串生成)-->
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+
+        <!-- Jakarta Servlet API -->
+        <dependency>
+            <!-- 无修改地部署到多种Web服务器上, 如果需要直接操作 Servlet API, 比如 HttpServletRequest / HttpServletResponse 就需要这个依赖 -->
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Open API -->
+        <dependency>
+            <!-- Knife4j 是 Swagger 的增强版, 提供 API 文档生成和展示, 搭配扫描配置还可以自动编写在线接口文档 -->
+            <groupId>com.github.xingfudeshi</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>4.6.0</version>
+        </dependency>
+
+        <!-- Actuator -->
+        <dependency>
+            <!-- Spring Boot 监控组件, 主要用来给 IDEA 作为 Bean 检测所使用的 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

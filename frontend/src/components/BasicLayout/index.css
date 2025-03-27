@@ -1,0 +1,10 @@
+/* ./src/layouts/BasicLayout/index.css */
+
+/* 避免页脚遮挡内容 */
+.ant-pro-layout .ant-pro-layout-content {
+    padding-bottom: 75px !important;
+}
+.ant-pro-layout-top {
+    height: 100%;
+}
+

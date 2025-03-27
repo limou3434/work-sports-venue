@@ -1,0 +1,16 @@
+### @author <a href="https://github.com/xiaogithubooo">xxx</a> ##
+
+# 后端相关忽略文件
+/backend/.idea
+/backend/.mvn
+/backend/mvnw
+/backend/mvnw.cmd
+/backend/target
+/backend/*.tar
+
+# 前端相关忽略文件
+/frontend/.idea
+/frontend/.next/
+/frontend/node_modules
+/frontend/*.tar
+

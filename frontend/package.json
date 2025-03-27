@@ -1,0 +1,50 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "openapi": "node --loader ts-node/esm openapi.config.ts",
+    "lint": "next lint",
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build && cp -r ./public .next/standalone/ && cp -r ./.next/static .next/standalone/.next/",
+    "package": "mkdir -p ./.next/target && zip -r ./.next/target/standalone.zip .next/standalone"
+  },
+  "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.2",
+    "@ant-design/pro-components": "^2.8.6",
+    "@bytemd/plugin-gfm": "^1.22.0",
+    "@bytemd/plugin-highlight": "^1.22.0",
+    "@bytemd/react": "^1.22.0",
+    "@react-spring/web": "^9.7.5",
+    "@reduxjs/toolkit": "^2.6.1",
+    "antd": "^5.24.3",
+    "axios": "^1.8.2",
+    "canvas-confetti": "^1.9.3",
+    "framer-motion": "^12.5.0",
+    "gsap": "^3.12.7",
+    "i18next": "^24.2.3",
+    "next": "14.2.6",
+    "nprogress": "^0.2.0",
+    "ogl": "^1.0.11",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-i18next": "^15.4.1",
+    "react-redux": "^9.2.0",
+    "three-mesh-bvh": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@umijs/openapi": "^1.13.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.6",
+    "eslint-config-prettier": "^10.1.1",
+    "prettier": "3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  }
+}

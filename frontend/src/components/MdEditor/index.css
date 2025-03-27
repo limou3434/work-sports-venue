@@ -1,0 +1,6 @@
+/* ./src/components/MdEditor/index.css */
+
+/* 去除 github 图标 */
+.bytemd-toolbar-icon.bytemd-tippy.bytemd-tippy-right:last-child {
+    display: none;
+}
