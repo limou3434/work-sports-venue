@@ -1,0 +1,38 @@
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <text class="title">课程预约</text>
+  </view>
+
+  <!-- 课程列表 -->
+  <view class="course-list">
+    <block wx:for="{{courses}}" wx:key="id" wx:for-item="item">
+      <view class="course-item">
+        <!-- 课程名称 -->
+        <text class="course-name">{{item.name}}</text>
+
+        <!-- 日期选择器 -->
+        <view class="picker-group">
+          <text>选择日期：</text>
+          <picker mode="date" start="{{minDate}}" end="{{maxDate}}" 
+                  value="{{item.date}}" data-id="{{item.id}}" bindchange="onDateChange">
+            <text class="picker-text">{{item.date}}</text>
+          </picker>
+        </view>
+
+        <!-- 时间选择器 -->
+        <view class="picker-group">
+          <text>选择时间：</text>
+          <picker mode="time" value="{{item.time}}" data-id="{{item.id}}" bindchange="onTimeChange">
+            <text class="picker-text">{{item.time}}</text>
+          </picker>
+        </view>
+
+        <!-- 预约按钮 -->
+        <button class="reserve-btn" bindtap="reserveCourse" data-id="{{item.id}}">
+          预约课程
+        </button>
+      </view>
+    </block>
+  </view>
+</view>

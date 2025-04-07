@@ -1,0 +1,30 @@
+<scroll-view class="scroll-area" scroll-y>
+  <!-- 欢迎区域 -->
+  <view class="header">
+    <text class="welcome-text">欢迎来到健身房管理平台！</text>
+    <image class="banner" src="/images/banner.png" mode="aspectFill"></image>
+  </view>
+
+  <!-- 功能导航区域 -->
+  <view class="nav-area">
+    <view class="nav-item" bindtap="goToCourses">
+      <text>课程预约</text>
+    </view>
+
+    <view class="nav-item" bindtap="goToTrainers">
+      <text>教练信息</text>
+    </view>
+
+    <view class="nav-item" bindtap="goToinstrument">
+      <text>器械使用</text>
+    </view>
+
+    <view class="nav-item" bindtap="goToSafety">
+      <text>安全信息</text>
+    </view>
+
+    <view class="nav-item" bindtap="goToBluetooth">
+      <text>蓝牙设备</text>
+    </view>
+  </view>
+</scroll-view>

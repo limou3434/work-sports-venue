@@ -1,0 +1,22 @@
+<view class="container">
+  <!-- 器械标题 -->
+  <view class="header">
+    <text class="title">{{equipmentDetail.name}}</text>
+  </view>
+
+  <!-- 器械图片 -->
+  <image class="equipment-image" src="{{equipmentDetail.icon}}" mode="aspectFit"></image>
+
+  <!-- 器械描述 -->
+  <view class="description">
+    <text>{{equipmentDetail.description}}</text>
+  </view>
+
+  <!-- 使用动作介绍 -->
+  <view>
+    <text class="section-title">使用动作：</text>
+    <block wx:for="{{equipmentDetail.movements}}" wx:key="index">
+      <text class="movement-item">{{index + 1}}. {{item}}</text>
+    </block>
+  </view>
+</view>

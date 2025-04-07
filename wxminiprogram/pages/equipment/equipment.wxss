@@ -1,0 +1,51 @@
+.container {
+    padding: 30rpx;
+    background-color: #f8f9fa;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 40rpx;
+  }
+  
+  .title {
+    font-size: 48rpx; /* 标题字体放大 */
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .equipment-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30rpx; /* 项目之间的间距增大 */
+  }
+  
+  .equipment-item {
+    width: 45%;
+    background-color: #fff;
+    border-radius: 20rpx; /* 圆角增加 */
+    box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 30rpx; /* 内边距增大 */
+  }
+  
+  .equipment-icon {
+    width: 150rpx; /* 图标尺寸放大 */
+    height: 150rpx;
+    margin-bottom: 20rpx;
+  }
+  
+  .equipment-name {
+    font-size: 36rpx; /* 字体放大 */
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .equipment-description {
+    font-size: 28rpx; /* 描述字体放大 */
+    color: #666;
+    margin-top: 10rpx;
+    line-height: 1.5; /* 行高增大，便于阅读 */
+  }
+  

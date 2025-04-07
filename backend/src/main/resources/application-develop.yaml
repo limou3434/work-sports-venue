@@ -1,0 +1,53 @@
+# 配置框架
+spring:
+  ## 配置名称
+  application:
+    name: work-user-centre
+  ## 配置盐值
+  salt: work-user-centre
+  ## 配置数源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver # "com.mysql.jdbc.Driver" 已经过时
+    url: jdbc:mysql://127.0.0.1:3306/work_user_centre
+    username: wuc
+    password: Qwe54188_
+  ## 配置会话
+  session:
+    timeout: 86400 # 一天就失效(1 * 24 * 60 * 60)
+
+# 配置日志
+logging:
+  level:
+    # root: DEBUG # 如果需要仔细调试可以打开这个选项
+    com.work.workusercentre: DEBUG # 控制本项目包内的日志输出等级 TRACE | DEBUG | INFO | WARN | ERROR | FATAL
+
+# 配置服务
+server:
+  ## 配置地址
+  address: 127.0.0.1
+  ## 配置端口
+  port: 8000
+  ## 配置路由
+  servlet:
+    context-path: /work_user_centre_api # 这样所有接口都会带上前缀
+
+# 配置持久
+mybatis-plus:
+  ## 配置全局
+  global-config:
+    db-config:
+      logic-delete-field: deleted # 指定数据库全局逻辑删除字段名, 并且给实体类的对应字段加上 @TableLogic
+      logic-delete-value: 1 # 逻辑已删除值
+      logic-not-delete-value: 0 # 逻辑未删除值
+
+# 配置文档
+springdoc:
+  ## 配置接口文档开关
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+  ## 配置接口文档小组
+  group-configs:
+    - group: 用户接口
+      packages-to-scan: com.work.workusercentre

@@ -1,0 +1,36 @@
+/* 页面整体背景 */
+.container {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 垂直居中 */
+    align-items: center; /* 水平居中 */
+    padding: 0 30rpx;
+    box-sizing: border-box;
+  }
+  
+  /* 标题样式 */
+  .header {
+    margin-bottom: 60rpx;
+  }
+  
+  .title {
+    font-size: 42rpx;
+    font-weight: bold;
+    color: #1abc9c;
+    text-align: center;
+  }
+  
+  /* 登录按钮样式 */
+  .login-btn {
+    background-color: #1abc9c;
+    color: #ffffff;
+    font-size: 32rpx;
+    border-radius: 10rpx;
+    padding: 20rpx 0;
+    width: 80%;
+    text-align: center;
+    box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  }
+  

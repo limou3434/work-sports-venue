@@ -1,0 +1,69 @@
+services:
+  # 存储
+  work-user-centre-mysql:
+    image: mysql:8.0.41
+    container_name: work-user-centre-mysql
+    privileged: true
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: Qwe54188_
+    volumes:
+      - "./docker/mysql/data/:/var/lib/mysql/"
+      - "./docker/mysql/init/:/docker-entrypoint-initdb.d/" # 改为镜像文件
+    ports:
+      - "3306:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    networks:
+      - work-user-centre-network
+
+  # 代理
+  work-user-centre-nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    container_name: work-user-centre-nginx
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - work-user-centre-network
+
+  # 后端
+  work-user-centre-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: work-user-centre-backend:1.0.0
+    container_name: work-user-centre-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      SPRING_PROFILES_ACTIVE: release # 环境变量(可以通过 SPRING_PROFILES_ACTIVE=develop | release | production 修改运行环境的配置)
+    networks:
+      - work-user-centre-network
+    depends_on:
+      - work-user-centre-mysql
+
+  # 前端
+  work-user-centre-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: work-user-centre-frontend:1.0.0
+    container_name: work-user-centre-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      HOSTNAME: work-user-centre-frontend # 还是要设计一个环境变量控制部署和开发
+    networks:
+      - work-user-centre-network
+
+networks:
+  work-user-centre-network:
+    name: work-user-centre-network

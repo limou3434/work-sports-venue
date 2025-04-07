@@ -1,0 +1,31 @@
+<view class="trainer-list">
+  <!-- 遍历教练信息 -->
+  <block wx:for="{{trainers}}" wx:key="id">
+    <view class="trainer-item">
+      <!-- 教练信息 -->
+      <text class="trainer-name">{{item.name}}</text>
+      <text class="trainer-status">{{item.status}}</text>
+
+      <!-- 下课倒计时 -->
+      <block wx:if="{{item.status === '已预约'}}">
+        <text class="countdown">下课倒计时：{{item.countdown}} 分钟</text>
+      </block>
+
+      <!-- 预约按钮 -->
+      <button 
+        class="reserve-btn" 
+        bindtap="onReserve" 
+        data-id="{{item.id}}" 
+        style="background-color: {{item.canReserve ? '#1abc9c' : '#555'}};"
+        disabled="{{!item.canReserve}}"
+      >
+        {{item.canReserve ? '预约' : '不可预约'}}
+      </button>
+    </view>
+  </block>
+</view>
+
+<!-- 重置按钮 -->
+<view class="reset-area">
+  <button class="reset-btn" bindtap="resetData">重置数据</button>
+</view>

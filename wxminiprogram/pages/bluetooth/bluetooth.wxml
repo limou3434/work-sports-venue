@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="header">
+    <text class="title">蓝牙设备管理</text>
+  </view>
+
+  <button class="btn" bindtap="openBluetoothAdapter">初始化蓝牙</button>
+  <button class="btn" bindtap="startDiscovery">搜索蓝牙设备</button>
+  
+  <scroll-view scroll-y class="device-list">
+    <block wx:for="{{devices}}" wx:key="deviceId">
+      <button class="btn device-btn" bindtap="connectToDevice" data-device-id="{{item.deviceId}}">连接 {{item.name || item.deviceId}}</button>
+    </block>
+  </scroll-view>
+
+  <view wx:if="{{connected}}" class="connected-section">
+    <input class="input-box" placeholder="输入要发送的数据" bindinput="bindInputData"/>
+    <button class="btn send-btn" bindtap="sendData">发送数据</button>
+    <text class="data-label">接收到的数据:</text>
+    <text class="data-value">{{receivedData}}</text>
+    <button class="btn disconnect-btn" bindtap="disconnectDevice">断开连接</button>
+  </view>
+
+  <view class="section">
+    <text class="section-title">闸机控制</text>
+    <switch class="gate-switch" bindchange="toggleGate" checked="{{gateState}}"></switch>
+    <text class="gate-status">{{gateState ? '闸机已开启' : '闸机已关闭'}}</text>
+  </view>
+
+  <view class="section">
+    <text class="section-title">烟雾传感器数据</text>
+    <text class="sensor-data">{{smokePpm}} ppm</text>
+  </view>
+</view>

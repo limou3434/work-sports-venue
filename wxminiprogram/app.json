@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/courses/courses",
+    "pages/trainers/trainers",
+    "pages/equipment/equipment",
+    "pages/equipment/detail",
+    "pages/safety/safety",
+    "pages/register/register",
+    "pages/bluetooth/bluetooth"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "健身房管理平台",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于搜索蓝牙设备"
+    }
+  }
+}

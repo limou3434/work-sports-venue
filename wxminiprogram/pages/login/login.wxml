@@ -1,0 +1,11 @@
+<view class="container">
+  <!-- 欢迎标题 -->
+  <view class="header">
+    <text class="title">欢迎使用健身房管理平台</text>
+  </view>
+
+  <!-- 登录按钮 -->
+  <view class="login-section">
+    <button class="login-btn" bindtap="onLogin">微信一键登录</button>
+  </view>
+</view>

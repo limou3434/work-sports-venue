@@ -1,0 +1,19 @@
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <text class="title">安全信息</text>
+  </view>
+
+  <!-- 闸机控制 -->
+  <view class="section">
+    <text class="section-title">闸机控制</text>
+    <switch class="gate-switch" bindchange="toggleGate" checked="{{gateState}}"></switch>
+    <text class="gate-status">{{gateState ? '闸机已开启' : '闸机已关闭'}}</text>
+  </view>
+
+  <!-- 烟雾传感器数据 -->
+  <view class="section">
+    <text class="section-title">烟雾传感器数据</text>
+    <text class="sensor-data">{{smokePpm}} ppm</text>
+  </view>
+</view>

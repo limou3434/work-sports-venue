@@ -1,0 +1,14 @@
+<view class="container">
+  <view class="header">
+    <text class="title">器械列表</text>
+  </view>
+
+  <view class="equipment-list">
+    <block wx:for="{{equipmentList}}" wx:key="id">
+      <view class="equipment-item" bindtap="goToDetail" data-id="{{item.id}}">
+        <image class="equipment-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <text class="equipment-name">{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+</view>
