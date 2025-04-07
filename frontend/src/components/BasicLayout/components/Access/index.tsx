@@ -1,5 +1,5 @@
 /**
- *  ./src/components/BasicLayout/components/Access/index.tsx: 网页权限组件
+ *  ./src/components/BasicLayout/components/Access/page.tsx: 网页权限组件
  */
 "use client"
 import "./index.css";

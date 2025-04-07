@@ -1,50 +1,6 @@
-# 配置文件
-#
-# @author <a href="https://github.com/xiaogithuboo">limou3434</a>
-
 # 配置框架
+# 使用 java -jar app.jar --spring.profiles.active=develop | release | production 来启动项目
 spring:
-  # (1)配置名称
-  application:
-    name: work-user-centre
-  # (2)配置数源
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver # "com.mysql.jdbc.Driver" 已经过时
-    url: jdbc:mysql://localhost:3306/work_user_centre
-    username: work_uc
-    password: 123456
-  # (3)配置会话
-  session:
-    timeout: 86400 # 一天就失效
-  # (4)配置盐值
-  salt: work-user-centre
-
-# 配置日志
-logging:
-  level:
-    org.springframework.web: DEBUG
-    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
-
-# 配置服务
-server:
-  # (1)配置端口
-  port: 8000
-  # (2)配置路由
-  servlet:
-    context-path: /work_user_centre_api # 这样所有接口都会带上前缀
-
-# 配置持久
-mybatis-plus:
-  # 配置全局
-  global-config:
-    db-config:
-      logic-delete-field: deleted # 指定数据库全局逻辑删除字段名, 并且给实体类的对应字段加上 @TableLogic
-      logic-delete-value: 1 # 逻辑已删除值
-      logic-not-delete-value: 0 # 逻辑未删除值
-
-# 配置文档
-springdoc: # 访问 http://localhost:8000/work_user_centre_api/doc.html 即可得到在线文档, 而使用 http://localhost:8000/work_user_centre_api/v3/api-docs 可以获得接口协议 json 提供给前端进行开发 TODO: 生产环境中需要关闭文档
-  # 配置接口文档小组
-  group-configs:
-    - group: 用户接口
-      packages-to-scan: com.work.workusercentre
+  ## 环境配置
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:develop} # 默认启动开发环境

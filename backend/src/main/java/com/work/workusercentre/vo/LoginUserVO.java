@@ -12,7 +12,7 @@ import java.io.Serializable;
 /**
  * 登录用户脱敏
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 @Data
 public class LoginUserVO implements Serializable {

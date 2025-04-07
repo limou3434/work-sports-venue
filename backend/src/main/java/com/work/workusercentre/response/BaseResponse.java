@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * 通用响应体描述类
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 @Data
 public class BaseResponse<T> implements Serializable {

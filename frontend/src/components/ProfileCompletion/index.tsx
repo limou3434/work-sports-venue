@@ -1,5 +1,5 @@
 /**
- * ./src/components/ProfileCompletion/index.tsx: 用户信息完成度组件(参考 https://www.kirilv.com/canvas-confetti/)
+ * ./src/components/ProfileCompletion/page.tsx: 用户信息完成度组件(参考 https://www.kirilv.com/canvas-confetti/)
  */
 "use client";
 
@@ -77,8 +77,8 @@ const ProfileCompletion: React.FC = () => {
     const incompleteFields = getIncompleteFields(loginUser);
 
     return (
-        <div className="profile-completion" style={{ width: "100%", margin: "0 auto" }}>
-            <Card variant="borderless" hoverable={true} style={{ width: "100%", height: "100%" }}>
+        <div className="profile-completion" style={{width: "100%", margin: "0 auto"}}>
+            <Card variant="borderless" hoverable={true} style={{width: "100%", height: "100%"}}>
                 {/* 标题 */}
                 <h3>当前登录用户信息完成度</h3>
 
@@ -88,16 +88,8 @@ const ProfileCompletion: React.FC = () => {
                     <List
                         header={<b>完善以下信息可提升完成度：</b>}
                         dataSource={incompleteFields}
-                        renderItem={(item, index) => <List.Item style={{ color: 'red' }} key={index}>✗ {item}</List.Item>}
+                        renderItem={(item, index) => <List.Item style={{color: 'red'}} key={index}>✗ {item}</List.Item>}
                     />
-                )}
-
-                {/* 按钮 */}
-                {incompleteFields.length > 0 && (
-                    <div style={{ textAlign: "center" }}>
-                        {/* TODO: 跳转到完善信息页面 */}
-                        <a href="/form">完善信息</a>
-                    </div>
                 )}
             </Card>
             {/* 礼炮 */}

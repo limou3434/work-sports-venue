@@ -5,10 +5,10 @@ import lombok.Getter;
 /**
  * 用户角色枚举
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 @Getter
-public enum UserRoleEnum { // TODO: 其实也是可以考虑使用数据库来实现的, 不过由于效率问题, 暂时不必这么做, 目前还没有这个需求, 因此先忽略
+public enum UserRoleEnum { // 由于效率问题, 这里手动缓存了数据库中的用户权限, 数据库中的用户等级只是用来限制插入和前端查询的
 
     /**
      * 用户角色枚举实例

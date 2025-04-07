@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-依赖文件
-
-@author <a href="https://github.com/xiaogithuboo">limou3434</a>
--->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- 元数描述 -->
     <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+    <name>backend</name>
+    <description>后端</description>
+    <url>https://github.com/dididada</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- 标识描述 -->
+    <groupId>com.work</groupId>
+    <artifactId>backend</artifactId>
+    <version>1.0.0</version>
+
+    <!-- 版本描述 -->
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <!-- 继承描述 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
-    <groupId>com.work</groupId>
-    <artifactId>backend</artifactId>
-    <version>0.0.1</version>
-    <name>backend</name>
-    <description>backend</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
-    <properties>
-        <java.version>17</java.version>
-    </properties>
+
+    <!-- 依赖描述 -->
     <dependencies>
 
         <!-- Spring -->
@@ -80,19 +81,6 @@
             <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
             <version>3.5.10.1</version>
         </dependency>
-<!--        <dependency>-->
-<!--            &lt;!&ndash; 编写关于 MyBatis 的测试代码可以用上 &ndash;&gt;-->
-<!--            <groupId>org.mybatis.spring.boot</groupId>-->
-<!--            <artifactId>mybatis-spring-boot-starter-test</artifactId>-->
-<!--            <version>3.0.4</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--        &lt;!&ndash; MyBatis + Spring Boot 整合的 Starter, 简化 MyBatis 的配置和使用(如果不使用 MyBatisPlus 则可以考虑直接使用 MyBatis) &ndash;&gt;-->
-<!--           <groupId>org.mybatis.spring.boot</groupId>-->
-<!--           <artifactId>mybatis-spring-boot-starter</artifactId>-->
-<!--           <version>3.0.4</version>-->
-<!--        </dependency>-->
 
         <!-- Lombok -->
         <dependency>
@@ -136,6 +124,7 @@
 
     </dependencies>
 
+    <!-- 插件描述 -->
     <build>
         <plugins>
             <plugin>

@@ -1,4 +1,4 @@
-// ./src/stores/index.ts: 状态管理库(相当于一个数据库)
+// ./src/stores/createShowMessage.ts: 状态管理库(相当于一个数据库)
 
 import { configureStore } from "@reduxjs/toolkit";
 import loginUser from "@/stores/loginUser";

@@ -4,9 +4,9 @@ import com.work.workusercentre.annotation.AuthCheck;
 import com.work.workusercentre.enums.UserRoleEnum;
 import com.work.workusercentre.exception.ArgumentException;
 import com.work.workusercentre.exception.NotRoleException;
-import com.work.workusercentre.controller.response.ErrorCodeBindMessage;
+import com.work.workusercentre.response.ErrorCodeBindMessage;
 import com.work.workusercentre.service.UserService;
-import com.work.workusercentre.controller.response.vo.LoginUserVO;
+import com.work.workusercentre.vo.LoginUserVO;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -21,11 +21,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 /**
  * 权限校验注解实现
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
-@Slf4j
-@Aspect
 @Component
+@Aspect
+@Slf4j
 public class AuthInterceptor {
 
     @Resource
@@ -33,15 +33,18 @@ public class AuthInterceptor {
 
     @Around("@annotation(authCheck)")
     public Object doInterceptor(ProceedingJoinPoint joinPoint, AuthCheck authCheck) throws Throwable {
+
         // 获取当前登录角色并转化为枚举体实例
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes(); // RequestContextHolder 可以获取当前线程的请求上下文
         HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
         LoginUserVO loginUser = userService.getLoginUserState(request);
         UserRoleEnum loginUserRoleEnum = UserRoleEnum.getEnumByCode(loginUser.getUserRole());
+
         // 如果没有登录, 直接拒绝
         if (loginUserRoleEnum == null) {
             throw new ArgumentException(ErrorCodeBindMessage.NOT_LOGIN_ERROR, "请先进行登录");
         }
+
         // 如果已被封号, 直接拒绝
         if (UserRoleEnum.BAN_ROLE.equals(loginUserRoleEnum)) {
             throw new NotRoleException(ErrorCodeBindMessage.NO_AUTH_ERROR, "您已被封号, 请联系管理员");
@@ -50,7 +53,7 @@ public class AuthInterceptor {
         // 获取必须得到角色并转化为枚举体实例
         String mustRole = authCheck.mustRole();
         UserRoleEnum mustRoleEnum = UserRoleEnum.getEnumByDescription(mustRole);
-        log.debug("{} , 当前登录用户角色: {}, 必须得到角色: {}", mustRole, loginUserRoleEnum, mustRoleEnum);
+        log.debug("接口需要角色 {}, 映射角色枚举: {}, 当前登录角色: {}", mustRole.isEmpty() ? "null" : mustRole, mustRoleEnum, loginUserRoleEnum);
 
         // 如果没有必须得到角色, 直接放行
         if (mustRoleEnum == null) {
@@ -68,6 +71,7 @@ public class AuthInterceptor {
         }
 
         throw new NotRoleException(ErrorCodeBindMessage.NO_AUTH_ERROR, "您没有该权限");
+
     }
 
 }

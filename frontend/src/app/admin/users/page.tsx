@@ -128,15 +128,16 @@ export default function AdminUsersPage() {
 
     // NOTE: Hook
     useEffect(() => {
-        (async () => {
+        const fetchData = async () => {
             try {
                 const res = await userSearch({});
                 setData(Array.isArray(res?.data) ? res.data : []);
-                void message.success("访问数据库成功");
+                console.log("访问数据库成功");
             } catch (error) {
-                void message.error("未知错误");
+                console.log("未知错误");
             }
-        })();
+        };
+        fetchData().then(r => {console.log("调用")});
     }, []);
 
     // NOTE: Render
@@ -144,7 +145,7 @@ export default function AdminUsersPage() {
         <div id="adminUsersPage">
             {/* 用户列表 */}
             <AdvancedTable<API.LoginUserVO>
-                title={"用户列表记录"}
+                title={t("user_table")}
                 columns={columns}
                 data={data}
                 rowKey={"id"}
@@ -265,4 +266,3 @@ export default function AdminUsersPage() {
         </div>
     );
 }
-

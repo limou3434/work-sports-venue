@@ -16,7 +16,7 @@ export default function FormPage() {
     const roleMap = {
         0: "普通用户",
         1: "管理员",
-        2: "封号",
+        2: "超级管理员",
     };
 
     const genderMap = {
@@ -226,13 +226,7 @@ export default function FormPage() {
                             <Input/>
                         </Form.Item>
                         <Form.Item label={t("user_role")} name="userRole">
-                            <Tag
-                            color={
-                                role === 2 ? "red" :
-                                role === 1 ? "gold" :
-                                role === 0 ? "green" :
-                                "gray"
-                            }
+                            <Tag color={role === 2 ? "red" : role === 1 ? "gold" : role === 0 ? "green" : "gray"}
                                  style={{marginBottom: 5}}>
                                 {/* @ts-ignore */}
                                 {role !== undefined && roleMap[role] ? roleMap[role] : t("未知")}（无法修改）

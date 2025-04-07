@@ -4,14 +4,10 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Date;
 
-/**
- * 删除用户请求
- *
- * @author <a href="https://github.com/xiaogithuboo">dididada</a>
- */
 @Data
-public class UserDeleteRequest implements Serializable {
+public class CourseDeleteRequest implements Serializable {
 
     private Long id;
 

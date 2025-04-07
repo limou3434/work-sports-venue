@@ -1,4 +1,4 @@
-// ./src/constants/index.ts
+// ./src/constants/createShowMessage.ts
 
 // 一些常量可以放在这里, 如果常量之间具有明显的分类关系, 就可以在 constants/ 下开始分文件导出, 并且统一使用 index 和外界进行导出
 

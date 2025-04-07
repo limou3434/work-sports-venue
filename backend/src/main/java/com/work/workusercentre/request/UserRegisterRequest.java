@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 注册用户请求
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 @Data
 public class UserRegisterRequest implements Serializable {

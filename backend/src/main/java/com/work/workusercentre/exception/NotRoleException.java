@@ -1,12 +1,12 @@
 package com.work.workusercentre.exception;
 
-import com.work.workusercentre.controller.response.ErrorCodeBindMessage;
+import com.work.workusercentre.response.ErrorCodeBindMessage;
 import lombok.Getter;
 
 /**
  * 权限异常类
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 @Getter
 public class NotRoleException extends RuntimeException {

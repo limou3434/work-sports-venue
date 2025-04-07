@@ -1,4 +1,4 @@
-// ./src/layouts/BasicLayout/components/Header/index.tsx: 网页页头组件
+// ./src/layouts/BasicLayout/components/Header/page.tsx: 网页页头组件
 
 "use client";
 

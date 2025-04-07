@@ -8,7 +8,7 @@ import java.net.InetAddress;
 /**
  * 网络工具类
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 @Slf4j
 public class NetUtils {
@@ -44,7 +44,7 @@ public class NetUtils {
                 }
             }
         }
-        // 多个代理的情况，第一个IP为客户端真实 IP, 多个 IP 按照 ',' 分割
+        // 多个代理的情况，第一个 IP 为客户端真实 IP, 多个 IP 按照 ',' 分割
         if (ip != null && ip.length() > 15) {
             if (ip.indexOf(",") > 0) {
                 ip = ip.substring(0, ip.indexOf(","));

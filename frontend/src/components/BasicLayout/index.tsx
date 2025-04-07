@@ -1,11 +1,11 @@
-// ./src/layouts/BasicLayout/index.tsx: 基本布局组件
+// ./src/layouts/BasicLayout/page.tsx: 基本布局组件
 "use client";
 
 import "./index.css";
 import {LoginOutlined, LogoutOutlined} from "@ant-design/icons";
 import {ProLayout} from "@ant-design/pro-components";
 import {Dropdown, message} from "antd";
-import React from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import {usePathname, useRouter} from "next/navigation";
 import Link from "next/link";
@@ -27,6 +27,7 @@ interface Props {
 
 export default function BasicLayout({children}: Props) {
     const pathname = usePathname(); // 获取当前页面地址
+
     const loginUser = useSelector((state: RootState) => state.loginUser); // 获取用户登陆状态实例
     const dispatch = useDispatch<AppDispatch>(); // 登入状态
     const router = useRouter(); // 重定向页面路由工具
@@ -52,7 +53,7 @@ export default function BasicLayout({children}: Props) {
             {/* 核心组件 */}
             <ProLayout
                 // 网站标题
-                title="健身房管理系统" // TODO: 集成到配置文件中
+                title="工作室用户中心" // TODO: 集成到配置文件中
                 // 网站图标
                 logo={
                     <Image
@@ -95,8 +96,7 @@ export default function BasicLayout({children}: Props) {
                                         const key = event.key;
                                         if (key === "login") {
                                             router.push("/user/login");
-                                        }
-                                        else if (key === "logout") {
+                                        } else if (key === "logout") {
                                             await doUserLogout();
                                             router.push("/user/login");
                                         }
@@ -118,12 +118,19 @@ export default function BasicLayout({children}: Props) {
                 }}
                 // 菜单跳转
                 // @ts-ignore
-                menuItemRender={(item, dom) => (
+                menuItemRender={(item, dom) => {
+                    return (
                     // 根据菜单进行页面跳转但需要约定路由的实际支持(也就是要编写对应的目录, 并且在这里可以拓展菜单的属性)
-                    <Link href={item.path || "/public"} target={item.target}>
-                        {dom}
-                    </Link>
-                )}
+                    // <Link href={item.path || "/public"} target={item.target}>
+                    //     {dom}
+                    // </Link>
+                    <div onClick={() => {console.log("点击了一次跳转")}}>
+                        <Link
+                            href={item.path || "/public"} target={item.target}>
+                            {dom}
+                        </Link>
+                    </div>
+                )}}
                 // 渲染文档
                 // @ts-ignore
                 actionsRender={(props) => {

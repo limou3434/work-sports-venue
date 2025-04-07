@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 自定义 错误-含义 枚举体
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 @Getter // 等价于只能用在类上的 Data
 public enum ErrorCodeBindMessage {

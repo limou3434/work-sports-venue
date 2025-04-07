@@ -3,21 +3,17 @@ import {message} from "antd";
 
 const mode = "develop"; // 读取 MODE 环境变量得到运行模式
 
-const hosts: Record<string, string> = { // 读取 XXXXXXX_HOST 环境变量
-    "develop": "127.0.0.1:8000", // 开发环境(无代理)
-    "release": "10.10.174.95:80", // 测试环境(有代理)
-    "product": "", // 生产环境(有代理)
+const hosts: Record<string, string> = {
+    "develop": "127.0.0.1:8000", // 开发环境
+    "release": "10.10.174.243:80", // 测试环境
+    "production": "", // 部署环境
 };
 
 const host = hosts[mode]; // 必须先读取为常量, 否则浏览器中无法动态获取...
-// console.info(mode);
-// console.info(host);
 
 const api = "work_user_centre_api";
-// console.info(api);
 
 const baseURL = `http://${host}/${api}`;
-// console.info(baseURL);
 ``
 /**
  * 创建 Axios 实例(如果需要选择多个 api 服务需要配置多个 axios 实例)

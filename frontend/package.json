@@ -1,13 +1,13 @@
 {
   "name": "frontend",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
     "openapi": "node --loader ts-node/esm openapi.config.ts",
     "lint": "next lint",
-    "dev": "next dev",
-    "start": "next start",
+    "dev": "next dev -H 127.0.0.1",
+    "start": "next start -H 127.0.0.1",
     "build": "next build && cp -r ./public .next/standalone/ && cp -r ./.next/static .next/standalone/.next/",
     "package": "mkdir -p ./.next/target && zip -r ./.next/target/standalone.zip .next/standalone"
   },
@@ -25,11 +25,12 @@
     "framer-motion": "^12.5.0",
     "gsap": "^3.12.7",
     "i18next": "^24.2.3",
-    "next": "14.2.6",
+    "next": "^14.2.26",
     "nprogress": "^0.2.0",
     "ogl": "^1.0.11",
     "react": "^18",
     "react-dom": "^18",
+    "react-fast-marquee": "^1.6.5",
     "react-i18next": "^15.4.1",
     "react-redux": "^9.2.0",
     "three-mesh-bvh": "^0.8.0"

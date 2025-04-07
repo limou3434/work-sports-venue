@@ -1,4 +1,4 @@
-// ./src/layouts/BasicLayout/components/SearchInput/index.tsx: 网页搜索组件
+// ./src/layouts/BasicLayout/components/SearchInput/page.tsx: 网页搜索组件
 
 "use client";
 

@@ -22,10 +22,10 @@ export default function UserRegisterPage() {
     const { t } = useTranslation();
 
     // 项目名称
-    const projectName = "健身房管理系统"; // TODO: 从文件中读取
+    const projectName = "工作室用户中心"; // TODO: 从文件中读取
 
     // 项目信息
-    const projectInfo = "基于物联网技术的健身房管理系统"; // TODO: 从文件中读取
+    const projectInfo = "科教平台工作室用户中心系统"; // TODO: 从文件中读取
 
     // 表单实例
     const [form] = ProForm.useForm();

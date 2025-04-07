@@ -4,12 +4,10 @@ import "./index.css";
 
 interface GridMotionProps {
     items?: string[];
-    gradientColor?: string;
 }
 
 const GridMotion: FC<GridMotionProps> = ({
                                              items = [],
-                                             gradientColor = "black",
                                          }) => {
     const gridRef = useRef<HTMLDivElement>(null);
     const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -69,9 +67,6 @@ const GridMotion: FC<GridMotionProps> = ({
         <div className="noscroll loading" ref={gridRef}>
             <section
                 className="intro"
-                style={{
-                    background: `radial-gradient(circle, ${gradientColor} 0%, transparent 100%)`,
-                }}
             >
                 <div className="gridMotion-container">
                     {Array.from({ length: 4 }, (_, rowIndex) => (
@@ -87,7 +82,7 @@ const GridMotion: FC<GridMotionProps> = ({
                                     <div key={itemIndex} className="row__item">
                                         <div
                                             className="row__item-inner"
-                                            style={{ backgroundColor: "#111" }}
+                                            style={{ backgroundColor: "#213770" }}
                                         >
                                             {typeof content === "string" &&
                                             content.startsWith("http") ? (

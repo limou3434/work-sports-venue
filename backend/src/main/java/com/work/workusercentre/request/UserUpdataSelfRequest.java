@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 修改用户请求(自己)
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 @Data
 public class UserUpdataSelfRequest implements Serializable {

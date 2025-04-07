@@ -31,14 +31,16 @@ export default function RootLayout({
         <body>
         {/* 引入组件库 */}
         <AntdRegistry>
-            {/* 加语言切换 */}
-            <LanguageSwitch>
-                {/* 加页面水印 */}
-                <WaterMark content={"健身房管理系统"} fontSize={18}> {/* TODO: 可以加上用户的 account, 并且打算配置化 */}
-                    {/* 状态管理器 */}
-                    <Provider store={store}>
-                        {/* 主题提供者 */}
-                        <ThemeProvider>
+            {/* 主题提供者 */}
+            <ThemeProvider>
+                {/* 加语言切换 */}
+                <LanguageSwitch>
+                    {/* 加页面水印 */}
+                    <WaterMark content={t('work_user_centre')}
+                               fontSize={18}> {/* TODO: 可以加上用户的 account, 并且打算配置化 */}
+                        {/* 状态管理器 */}
+                        <Provider store={store}>
+
                             {/* 逻辑初始化 */}
                             <LogicalInit>
                                 {/* 渲染初始化 */}
@@ -49,10 +51,10 @@ export default function RootLayout({
                                     </Access>
                                 </BasicLayout>
                             </LogicalInit>
-                        </ThemeProvider>
-                    </Provider>
-                </WaterMark>
-            </LanguageSwitch>
+                        </Provider>
+                    </WaterMark>
+                </LanguageSwitch>
+            </ThemeProvider>
         </AntdRegistry>
         </body>
         </html>

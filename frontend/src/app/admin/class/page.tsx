@@ -1,5 +1,5 @@
 /**
- * ./src/app/admin/levels/page.tsx: 等级管理页面
+ * ./src/app/admin/class/page.tsx: 等级管理页面
  */
 "use client";
 

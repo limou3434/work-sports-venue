@@ -1,4 +1,4 @@
-// ./src/components/MdEditor/index.tsx: Markdown 编辑器组件(必须客户端渲染)
+// ./src/components/MdEditor/page.tsx: Markdown 编辑器组件(必须客户端渲染)
 
 "use client";
 

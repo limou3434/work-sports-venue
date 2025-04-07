@@ -1,4 +1,4 @@
-// ./src/layouts/BasicLayout/components/Actions/index.tsx: 网页文档组件
+// ./src/layouts/BasicLayout/components/Actions/page.tsx: 网页文档组件
 
 "use client";
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * 加密盐值配置类
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 @Component
 @Data

@@ -1,5 +1,5 @@
 /**
- *  ./src/components/MdViewer/index.tsx: Markdown 浏览器组件(必须客户端渲染)
+ *  ./src/components/MdViewer/page.tsx: Markdown 浏览器组件(必须客户端渲染)
  */
 "use client";
 

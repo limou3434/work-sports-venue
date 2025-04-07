@@ -11,7 +11,7 @@ import static com.work.workusercentre.response.ErrorCodeBindMessage.SUCCESS;
  *  (1) 返回失败, 自动处理, 系统内部使用
  *  (2) 返回失败, 手动处理, 全局异常使用
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 public class TheResult {
 

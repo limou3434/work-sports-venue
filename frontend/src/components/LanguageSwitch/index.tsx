@@ -1,5 +1,5 @@
 /**
- * ./src/components/LanguageSwitch/index.tsx: 语言切换组件
+ * ./src/components/LanguageSwitch/page.tsx: 语言切换组件
  *
  * 使用该组件需要搭配 @/app/i18n.ts 文件使用
  */

@@ -2,30 +2,35 @@ package com.work.workusercentre.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.work.workusercentre.controller.request.UserSearchRequest;
+import com.work.workusercentre.config.PasswdSaltConfig;
+import com.work.workusercentre.contant.UserConstant;
+import com.work.workusercentre.request.UserAddRequest;
+import com.work.workusercentre.request.UserDeleteRequest;
+import com.work.workusercentre.request.UserSearchRequest;
+import com.work.workusercentre.request.UserUpdateRequest;
+import com.work.workusercentre.response.ErrorCodeBindMessage;
+import com.work.workusercentre.vo.LoginUserVO;
 import com.work.workusercentre.entity.User;
 import com.work.workusercentre.exception.ArgumentException;
 import com.work.workusercentre.mapper.UserMapper;
-import com.work.workusercentre.controller.response.ErrorCodeBindMessage;
 import com.work.workusercentre.service.UserService;
-import com.work.workusercentre.controller.response.vo.LoginUserVO;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import java.nio.charset.StandardCharsets;
-
-import static com.work.workusercentre.contant.ConfigConstant.SALT;
-import static com.work.workusercentre.contant.UserConstant.USER_LOGIN_STATE;
+import java.util.List;
 
 /**
  * 用户服务层实现
  *
- * @author <a href="https://github.com/xiaogithuboo">limou3434</a>
+ * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  * @description 针对表【user(用户信息表)】的数据库操作 Service 实现
  * @createDate 2025-03-06 10:25:51
  */
@@ -34,9 +39,77 @@ import static com.work.workusercentre.contant.UserConstant.USER_LOGIN_STATE;
 @Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
+    @Resource
+    private PasswdSaltConfig passwdSaltConfig;
+
+    @Override
+    public Boolean userAdd(UserAddRequest userAddRequest) {
+
+        // TODO: 1. 复杂校验
+
+        // 处理请求
+        var user = new User();
+        String encryptPassword = DigestUtils.md5DigestAsHex((passwdSaltConfig.getSalt() + UserConstant.DEFAULT_PASSWD).getBytes());
+        user.setUserPasswd(encryptPassword); // 设置默认密码
+        user.setUserRole(0); // 设置默认角色
+        BeanUtils.copyProperties(userAddRequest, user);
+        return this.save(user);
+
+    }
+
+    @Override
+    public Boolean userDelete(UserDeleteRequest userDeleteRequest) {
+
+        // 参数校验
+        if (userDeleteRequest.getId() <= 0) {
+            throw new ArgumentException(ErrorCodeBindMessage.PARAMS_ERROR, "参数用户 id 不能为空");
+        }
+
+        // 处理请求
+        return this.removeById(userDeleteRequest.getId()); // 这里 MyBatisPlus 会自动转化为逻辑删除
+
+    }
+
+    @Override
+    public LoginUserVO userUpdate(UserUpdateRequest userUpdateRequest) {
+
+        // 参数校验
+        if (userUpdateRequest.getId() == null) {
+            throw new ArgumentException(ErrorCodeBindMessage.PARAMS_ERROR, "参数用户 id 不能为空");
+        }
+
+        // 处理请求
+        User user = new User();
+
+        BeanUtils.copyProperties(userUpdateRequest, user);
+
+        boolean result = this.updateById(user);
+        if (!result) {
+            throw new ArgumentException(ErrorCodeBindMessage.SYSTEM_ERROR, "需要指定参数用户 id 才能修改");
+        }
+
+        return LoginUserVO.removeSensitiveData(user);
+
+    }
+
+    @Override
+    public List<LoginUserVO> userSearch(UserSearchRequest userSearchRequest) {
+
+        // TODO: 参数校验
+
+        // 处理请求
+        List<User> userList = this.list(this.getLambdaQueryWrapper(userSearchRequest));
+        return userList
+                .stream() // 转化操作, 将 userList 转换为一个流
+                .map(LoginUserVO::removeSensitiveData) // 中间操作, 将流中的每个元素都通过指定的函数进行转换
+                .toList();
+
+    }
+
     @Override
     public Long userRegister(String userAccount, String userPasswd, String checkPasswd) {
-        // 1. 参数校验
+
+        // TODO: 复杂校验
         // 判断传入的所有字符串是否都是空白(null、空字符串、仅包含空格）
         if (StringUtils.isAllBlank(userAccount, userPasswd, checkPasswd)) {
             throw new ArgumentException(ErrorCodeBindMessage.PARAMS_ERROR, "请输入账户、密码、确认密码后再注册");
@@ -58,6 +131,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new ArgumentException(ErrorCodeBindMessage.PARAMS_ERROR, "新密码和确认密码不一致");
         }
 
+        // 处理请求
         // 避免重复注册用户
         LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(User::getUserAccount, userAccount);
@@ -65,15 +139,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new ArgumentException(ErrorCodeBindMessage.OPERATION_ERROR, "不允许重复注册已存在的用户");
         }
 
-        // 2. 密码加密
-        String newUserPasswd = DigestUtils.md5DigestAsHex((SALT + userPasswd).getBytes(StandardCharsets.UTF_8));
+        // 密码加密
+        String newUserPasswd = DigestUtils.md5DigestAsHex((passwdSaltConfig.getSalt() + userPasswd).getBytes(StandardCharsets.UTF_8));
 
-        // 3. 创建用户
+        // 创建用户
         User user = new User();
         user.setUserAccount(userAccount);
         user.setUserPasswd(newUserPasswd);
 
-        // 4. 注册用户
+        // 注册用户
         boolean saveResult = this.save(user);
         if (!saveResult) {
             throw new ArgumentException(ErrorCodeBindMessage.SYSTEM_ERROR, "出现拆箱错误");
@@ -84,8 +158,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public LoginUserVO userLogin(String userAccount, String userPasswd, HttpServletRequest request, HttpServletResponse response) {
-        // 1. 参数校验
-        // 判断传入的所有字符串是否都是空白(null、空字符串、仅包含空格）
+
+        // TODO: 参数校验
+        // 判断传入的所有字符串是否都是空白(null、空字符串、仅包含空格)
         if (StringUtils.isAllBlank(userAccount, userPasswd)) {
             throw new ArgumentException(ErrorCodeBindMessage.PARAMS_ERROR, "请输入账户、密码后再登录");
         }
@@ -101,10 +176,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new ArgumentException(ErrorCodeBindMessage.PARAMS_ERROR, "密码不能包含特殊字符");
         }
 
-        // 2. 密码加密
-        String newUserPasswd = DigestUtils.md5DigestAsHex((SALT + userPasswd).getBytes(StandardCharsets.UTF_8));
+        // 处理请求
+        String newUserPasswd = DigestUtils.md5DigestAsHex((passwdSaltConfig.getSalt() + userPasswd).getBytes(StandardCharsets.UTF_8)); // 密码加密
 
-        // 3. 查询用户
+        // 查询用户
         LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(User::getUserAccount, userAccount).eq(User::getUserPasswd, newUserPasswd);
         User user = this.getOne(lambdaQueryWrapper);
@@ -112,26 +187,36 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new ArgumentException(ErrorCodeBindMessage.PARAMS_ERROR, "可能该用户不存在, 也可能是密码错误");
         }
 
-        // 4. 脱敏信息
+        // 脱敏信息
         LoginUserVO safetUser = LoginUserVO.removeSensitiveData(user);
 
-        // 5. 创建会话
+        // 创建会话
         // session 数据存储在应用服务器 Tomcat 中, 以后可以通过 request.getSession().getAttribute(USER_LOGIN_STA) 取出用户登陆自己浏览器中本应用的 session 信息 safetUser, 不过类型变成了 Object, 可以后续强转恢复
-        request.getSession().setAttribute(USER_LOGIN_STATE, safetUser); // TODO: 改为 Redis 分布式存储
+        request.getSession().setAttribute(UserConstant.USER_LOGIN_STATE, safetUser); // TODO: 改为 Redis 分布式存储
 
         return safetUser;
+
     }
 
     @Override
     public Boolean userLogout(HttpServletRequest request) {
-        request.getSession().removeAttribute(USER_LOGIN_STATE); // TODO: 改为 Redis 分布式存储
+
+        // TODO: 参数校验
+
+        // 处理请求
+        request.getSession().removeAttribute(UserConstant.USER_LOGIN_STATE); // TODO: 改为 Redis 分布式存储
         return true;
+
     }
 
     @Override
     public LoginUserVO getLoginUserState(HttpServletRequest request) {
+
+        // TODO: 参数校验
+
+        // 处理请求
         // 先判断是否已登录
-        var localCurrentUser = (LoginUserVO)request.getSession().getAttribute(USER_LOGIN_STATE);
+        var localCurrentUser = (LoginUserVO) request.getSession().getAttribute(UserConstant.USER_LOGIN_STATE);
 
         if (localCurrentUser == null) {
             throw new ArgumentException(ErrorCodeBindMessage.NOT_LOGIN_ERROR, "请先进行登录");
@@ -144,16 +229,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new ArgumentException(ErrorCodeBindMessage.NOT_FOUND_ERROR, "该用户已被管理员删除");
         }
         return LoginUserVO.removeSensitiveData(remoteCurrentUser);
+
     }
 
     @Override
     public LambdaQueryWrapper<User> getLambdaQueryWrapper(UserSearchRequest userSearchRequest) {
+
+        // TODO: 参数校验
+
         // 校验数据
         if (userSearchRequest == null) {
             throw new ArgumentException(ErrorCodeBindMessage.PARAMS_ERROR, "请求参数为空");
         }
 
-        // 处理数据
+        // 处理请求
         Long id = userSearchRequest.getId();
         String userAccount = userSearchRequest.getUserAccount();
         Integer userRole = userSearchRequest.getUserRole();
