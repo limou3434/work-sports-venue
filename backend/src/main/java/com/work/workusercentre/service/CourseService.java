@@ -11,10 +11,10 @@ import com.work.workusercentre.request.CourseUpdateRequest;
 import java.util.List;
 
 /**
-* @author Limou
-* @description 针对表【course】的数据库操作Service
-* @createDate 2025-04-08 00:53:08
-*/
+ * @author Limou
+ * @description 针对表【course】的数据库操作Service
+ * @createDate 2025-04-08 00:53:08
+ */
 public interface CourseService extends IService<Course> {
 
     Boolean courseAdd(CourseAddRequest courseAddRequest);

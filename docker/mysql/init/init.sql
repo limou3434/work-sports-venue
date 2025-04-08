@@ -60,11 +60,23 @@ insert into user (id, user_account, user_wx_union, user_mp_open, user_email, use
 CREATE TABLE course (
   id INT AUTO_INCREMENT PRIMARY KEY,
   course_name VARCHAR(256) NULL,
-  reserve_date DATE NULL,
-  reserve_time TIME NULL
+  reserve_date varchar(256) NULL,
+  reserve_time varchar(256) NULL
 );
 
 INSERT INTO course (course_name, reserve_date, reserve_time) VALUES
 ('瑜伽基础课', '2025-04-10', '10:00:00'),
 ('力量训练', '2025-04-11', '14:30:00'),
-('HIIT搞强度训练', '2025-04-17', '10:30:00');
+('HIIT高强度训练', '2025-04-17', '10:30:00');
+
+CREATE TABLE user_course (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NULL,
+    course_id INT NULL
+);
+
+INSERT INTO user_course (user_id, course_id) VALUES
+(2, 1),
+(2, 2),
+(2, 3),
+(3, 1);

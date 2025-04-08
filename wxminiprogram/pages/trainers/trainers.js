@@ -1,80 +1,64 @@
 Page({
-    data: {
-      trainers: [], // 教练列表数据
-      timer: null   // 定时器引用
-    },
-  
-    onLoad: function () {
-      this.initTrainerData();
-    },
-  
-    // 初始化教练数据
-    initTrainerData: function () {
-      const trainerData = [
-        { id: 1, name: '李教练', status: '空闲', countdown: 0, canReserve: true },
-        { id: 2, name: '王教练', status: '空闲', countdown: 0, canReserve: true },
-        { id: 3, name: '张教练', status: '空闲', countdown: 0, canReserve: true },
-        { id: 4, name: '赵教练', status: '空闲', countdown: 0, canReserve: true },
-        { id: 5, name: '周教练', status: '空闲', countdown: 0, canReserve: true },
-        { id: 6, name: '孙教练', status: '空闲', countdown: 0, canReserve: true }
-      ];
-      this.setData({ trainers: trainerData });
-    },
-  
-    // 预约教练
-    onReserve: function (e) {
-      const trainerId = e.currentTarget.dataset.id;
-  
-      const updatedTrainers = this.data.trainers.map(trainer => {
-        if (trainer.id === trainerId && trainer.canReserve) {
-          trainer.status = '已预约';
-          trainer.countdown = 30; // 设置下课倒计时为 30 分钟
-          trainer.canReserve = false; // 更新状态为不可预约
+  data: {
+    trainers: []
+  },
+
+  // 页面加载时获取数据
+  onLoad: function() {
+    this.getTrainersData();
+  },
+
+  // 获取用户数据
+  getTrainersData: function() {
+    wx.request({
+      url: 'http://127.0.0.1:8000/work_user_centre_api/user/search',
+      method: 'POST',
+      data: {},
+      success: (res) => {
+        if (res.data.code === 0) {
+          // 过滤数据，检查 userTags 是否包含 "教练"
+          const filteredTrainers = res.data.data.filter(item => 
+            item.userTags && item.userTags.includes('教练')
+          );
+
+          // 设置过滤后的数据
+          this.setData({
+            trainers: filteredTrainers
+          });
+        } else {
+          wx.showToast({ title: '获取用户失败', icon: 'none' });
         }
-        return trainer;
-      });
-  
-      this.setData({ trainers: updatedTrainers });
-      this.startCountdown(); // 启动倒计时
-    },
-  
-    // 启动倒计时功能
-    startCountdown: function () {
-      if (this.data.timer) return; // 如果已有定时器，避免重复开启
-  
-      const timer = setInterval(() => {
-        const updatedTrainers = this.data.trainers.map(trainer => {
-          if (trainer.status === '已预约' && trainer.countdown > 0) {
-            trainer.countdown--; // 每分钟倒计时减一
-          }
-          return trainer;
-        });
-  
-        this.setData({ trainers: updatedTrainers });
-  
-        // 检查所有倒计时结束
-        if (updatedTrainers.every(trainer => trainer.countdown === 0 || trainer.status !== '已预约')) {
-          clearInterval(this.data.timer);
-          this.setData({ timer: null });
-        }
-      }, 60000); // 每分钟更新一次
-  
-      this.setData({ timer });
-    },
-  
-    // 重置教练数据
-    resetData: function () {
-      clearInterval(this.data.timer); // 清除定时器
-      this.setData({ timer: null });
-      this.initTrainerData(); // 重新初始化数据
-      wx.showToast({
-        title: '数据已重置',
-        icon: 'success'
-      });
-    },
-  
-    onUnload: function () {
-      clearInterval(this.data.timer); // 页面卸载时清除定时器
+      },
+      fail: () => {
+        wx.showToast({ title: '请求失败', icon: 'none' });
+      }
+    });
+  },
+
+ // 预约按钮的点击事件
+ onReserve: function(e) {
+  const trainerId = e.currentTarget.dataset.id;
+  const trainers = this.data.trainers;
+
+  // 找到点击的教练并更新其预约状态
+  const updatedTrainers = trainers.map(trainer => {
+    if (trainer.id === trainerId) {
+      trainer.isReserved = !trainer.isReserved; // 切换预约状态
     }
+    return trainer;
   });
-  
+
+  // 更新数据
+  this.setData({
+    trainers: updatedTrainers
+  });
+
+  // 根据状态显示不同的提示
+  const message = updatedTrainers.find(trainer => trainer.id === trainerId).isReserved ? '已预约' : '取消预约';
+  wx.showToast({
+    title: message,
+    icon: 'success',
+    duration: 2000
+  });
+},
+});

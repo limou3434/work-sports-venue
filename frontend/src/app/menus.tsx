@@ -37,12 +37,12 @@ const menus = [
                 name: "用户列表",
             },
             {
-                path: "/admin/roles",
-                name: "角色列表",
+                path: "/admin/course",
+                name: "课程列表",
             },
             {
-                path: "/admin/class",
-                name: "班级列表",
+                path: "/admin/reserve",
+                name: "预约列表",
             },
         ],
     },
@@ -51,6 +51,7 @@ const menus = [
         name: "其他",
         icon: <BulbOutlined/>,
         access: ACCESS_ENUM.NOT_LOGIN,
+        hideInMenu: true, // TODO: 暂时屏蔽
     },
     {
         path: "/atest",

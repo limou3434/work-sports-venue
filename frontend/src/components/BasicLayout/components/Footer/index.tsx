@@ -11,7 +11,7 @@ const Footer = () => {
     return (
     <div className="footer">
       <div>© {currentYear} {t("made")}</div>
-      <div>{t("by_work")}</div>
+      <div>{"by me"}</div>
     </div>
     );
 };

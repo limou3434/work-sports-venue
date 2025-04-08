@@ -53,7 +53,7 @@ export default function BasicLayout({children}: Props) {
             {/* 核心组件 */}
             <ProLayout
                 // 网站标题
-                title="工作室用户中心" // TODO: 集成到配置文件中
+                title="健身房管理系统" // TODO: 集成到配置文件中
                 // 网站图标
                 logo={
                     <Image

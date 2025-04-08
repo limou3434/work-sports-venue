@@ -9,23 +9,14 @@
     <block wx:for="{{courses}}" wx:key="id" wx:for-item="item">
       <view class="course-item">
         <!-- 课程名称 -->
-        <text class="course-name">{{item.name}}</text>
+        <text class="course-name">{{item.courseName}}</text>
 
-        <!-- 日期选择器 -->
+        <!-- 显示日期和时间 -->
         <view class="picker-group">
-          <text>选择日期：</text>
-          <picker mode="date" start="{{minDate}}" end="{{maxDate}}" 
-                  value="{{item.date}}" data-id="{{item.id}}" bindchange="onDateChange">
-            <text class="picker-text">{{item.date}}</text>
-          </picker>
+          <text>上课日期：{{item.reserveDate}}</text>
         </view>
-
-        <!-- 时间选择器 -->
         <view class="picker-group">
-          <text>选择时间：</text>
-          <picker mode="time" value="{{item.time}}" data-id="{{item.id}}" bindchange="onTimeChange">
-            <text class="picker-text">{{item.time}}</text>
-          </picker>
+          <text>上课时间：{{item.reserveTime}}</text>
         </view>
 
         <!-- 预约按钮 -->

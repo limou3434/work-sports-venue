@@ -2,24 +2,23 @@ package com.work.workusercentre.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.work.workusercentre.contant.UserConstant;
 import com.work.workusercentre.entity.Course;
-import com.work.workusercentre.entity.User;
 import com.work.workusercentre.exception.ArgumentException;
-import com.work.workusercentre.request.*;
+import com.work.workusercentre.mapper.CourseMapper;
+import com.work.workusercentre.request.CourseAddRequest;
+import com.work.workusercentre.request.CourseDeleteRequest;
+import com.work.workusercentre.request.CourseSearchRequest;
+import com.work.workusercentre.request.CourseUpdateRequest;
 import com.work.workusercentre.response.ErrorCodeBindMessage;
 import com.work.workusercentre.service.CourseService;
-import com.work.workusercentre.mapper.CourseMapper;
-import com.work.workusercentre.vo.LoginUserVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
 
 import java.util.List;
 
 @Service
-public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements CourseService{
+public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements CourseService {
 
     @Override
     public Boolean courseAdd(CourseAddRequest courseAddRequest) {

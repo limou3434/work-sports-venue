@@ -16,9 +16,9 @@ public class CourseUpdateRequest implements Serializable {
 
     private String courseName;
 
-    private Date reserveDate;
+    private String reserveDate;
 
-    private Date reserveTime;
+    private String reserveTime;
 
     @Serial
     private static final long serialVersionUID = 1L;

@@ -1,52 +1,65 @@
 .trainer-list {
-    padding: 20rpx;
-    background-color: #f8f9fa;
-  }
-  
-  .trainer-item {
-    background-color: #fff;
-    border-radius: 15rpx;
-    padding: 20rpx;
-    margin-bottom: 20rpx;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .trainer-name {
-    font-size: 32rpx;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .trainer-status {
-    font-size: 28rpx;
-    margin: 10rpx 0;
-    color: #777;
-  }
-  
-  .countdown {
-    font-size: 28rpx;
-    color: #e74c3c;
-    margin-bottom: 10rpx;
-  }
-  
-  .reserve-btn {
-    color: #fff;
-    font-size: 28rpx;
-    border-radius: 10rpx;
-    text-align: center;
-  }
-  
-  .reset-area {
-    position: fixed;
-    bottom: 50rpx;
-    right: 50rpx;
-  }
-  
-  .reset-btn {
-    background-color: #ff7f50;
-    color: #fff;
-    border-radius: 10rpx;
-    font-size: 28rpx;
-    padding: 10rpx 20rpx;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+}
+
+.trainer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.trainer-item:hover {
+  transform: translateY(-5px);
+}
+
+.trainer-avatar {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.trainer-info {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.trainer-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.trainer-profile {
+  font-size: 14px;
+  color: rgb(119, 119, 119);
+}
+
+.reserve-btn {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 15px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  max-width: 100px; /* 限制按钮的最大宽度 */
+  width: auto; /* 按钮宽度自适应内容 */
+  text-align: center;
+}
+
+.reserve-btn:disabled {
+  cursor: not-allowed;
+  background-color: #ddd;
+}
+
+.reserve-btn:not(:disabled):hover {
+  opacity: 0.8;
+}

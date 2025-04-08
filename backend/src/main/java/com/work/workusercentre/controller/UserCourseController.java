@@ -1,16 +1,15 @@
 package com.work.workusercentre.controller;
 
-import com.work.workusercentre.annotation.AuthCheck;
-import com.work.workusercentre.entity.Course;
+import com.work.workusercentre.entity.UserCourse;
 import com.work.workusercentre.exception.ArgumentException;
-import com.work.workusercentre.request.CourseAddRequest;
-import com.work.workusercentre.request.CourseDeleteRequest;
-import com.work.workusercentre.request.CourseSearchRequest;
-import com.work.workusercentre.request.CourseUpdateRequest;
+import com.work.workusercentre.request.UserCourseAddRequest;
+import com.work.workusercentre.request.UserCourseDeleteRequest;
+import com.work.workusercentre.request.UserCourseSearchRequest;
+import com.work.workusercentre.request.UserCourseUpdateRequest;
 import com.work.workusercentre.response.BaseResponse;
 import com.work.workusercentre.response.ErrorCodeBindMessage;
 import com.work.workusercentre.response.TheResult;
-import com.work.workusercentre.service.CourseService;
+import com.work.workusercentre.service.UserCourseService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
-//import static com.work.workusercentre.contant.ConfigConstant.SALT;
 
 /**
  * 用户控制层
@@ -31,14 +28,14 @@ import java.util.List;
  * @author <a href="https://github.com/xiaogithuboo">dididada</a>
  */
 @RestController // 返回值默认为 json 类型
-@RequestMapping("/course")
-public class CourseController { // 通常控制层有服务层中的所有方法, 并且还有组合而成的方法, 如果组合的方法开始变得复杂就会封装到服务层内部
+@RequestMapping("/user_course")
+public class UserCourseController { // 通常控制层有服务层中的所有方法, 并且还有组合而成的方法, 如果组合的方法开始变得复杂就会封装到服务层内部
 
     @Resource
-    private CourseService courseService;
+    private UserCourseService userCourseService;
 
     @PostMapping("/add")
-    public BaseResponse<Boolean> courseAdd(@RequestBody CourseAddRequest courseAddRequest, HttpServletRequest request) {
+    public BaseResponse<Boolean> userCourseAdd(@RequestBody UserCourseAddRequest userCourseAddRequest, HttpServletRequest request) {
 
         // 参数校验
         if (request == null) {
@@ -46,7 +43,7 @@ public class CourseController { // 通常控制层有服务层中的所有方法
         }
 
         // 调用服务
-        boolean result = courseService.courseAdd(courseAddRequest);
+        boolean result = userCourseService.userCourseAdd(userCourseAddRequest);
 
         // 响应对象
         return TheResult.success(result);
@@ -54,7 +51,7 @@ public class CourseController { // 通常控制层有服务层中的所有方法
     }
 
     @PostMapping("/delete")
-    public BaseResponse<Boolean> courseDelete(@RequestBody CourseDeleteRequest courseDeleteRequest, HttpServletRequest request) {
+    public BaseResponse<Boolean> userCourseDelete(@RequestBody UserCourseDeleteRequest userCourseDeleteRequest, HttpServletRequest request) {
 
         // 参数校验
         if (request == null) {
@@ -62,7 +59,7 @@ public class CourseController { // 通常控制层有服务层中的所有方法
         }
 
         // 调用服务
-        boolean resault = courseService.courseDelete(courseDeleteRequest);
+        boolean resault = userCourseService.userCourseDelete(userCourseDeleteRequest);
 
         // 响应对象
         return TheResult.success(resault);
@@ -70,7 +67,7 @@ public class CourseController { // 通常控制层有服务层中的所有方法
     }
 
     @PostMapping("/update")
-    public BaseResponse<Course> courseUpdate(@RequestBody CourseUpdateRequest courseUpdateRequest, HttpServletRequest request) {
+    public BaseResponse<UserCourse> userCourseUpdate(@RequestBody UserCourseUpdateRequest userCourseUpdateRequest, HttpServletRequest request) {
 
         // 参数校验
         if (request == null) {
@@ -78,12 +75,12 @@ public class CourseController { // 通常控制层有服务层中的所有方法
         }
 
         // 响应对象
-        return TheResult.success(courseService.courseUpdate(courseUpdateRequest));
+        return TheResult.success(userCourseService.userCourseUpdate(userCourseUpdateRequest));
 
     }
 
     @PostMapping("/search")
-    public BaseResponse<List<Course>> courseSearch(@RequestBody CourseSearchRequest courseSearchRequest, HttpServletRequest request) {
+    public BaseResponse<List<UserCourse>> userCourseSearch(@RequestBody UserCourseSearchRequest userCourseSearchRequest, HttpServletRequest request) {
 
         // 参数校验
         if (request == null) {
@@ -91,23 +88,7 @@ public class CourseController { // 通常控制层有服务层中的所有方法
         }
 
         // 响应对象
-        return TheResult.success(courseService.courseSearch(courseSearchRequest));
-
-    }
-
-    @PostMapping("/submit")
-    public BaseResponse<Boolean> coursesSubmit(HttpServletRequest request) {
-
-        // 响应对象
-        return TheResult.success(true);
-
-    }
-
-    @PostMapping("/cancel")
-    public BaseResponse<Boolean> coursesCancel(HttpServletRequest request) {
-
-        // 响应对象
-        return TheResult.success(true);
+        return TheResult.success(userCourseService.userCourseSearch(userCourseSearchRequest));
 
     }
 

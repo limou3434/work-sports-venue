@@ -1,31 +1,20 @@
 <view class="trainer-list">
-  <!-- 遍历教练信息 -->
   <block wx:for="{{trainers}}" wx:key="id">
     <view class="trainer-item">
-      <!-- 教练信息 -->
-      <text class="trainer-name">{{item.name}}</text>
-      <text class="trainer-status">{{item.status}}</text>
-
-      <!-- 下课倒计时 -->
-      <block wx:if="{{item.status === '已预约'}}">
-        <text class="countdown">下课倒计时：{{item.countdown}} 分钟</text>
-      </block>
-
-      <!-- 预约按钮 -->
+      <image class="trainer-avatar" src="{{item.userAvatar}}" mode="aspectFill" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px;"></image>
+      <view class="trainer-info">
+        <text class="trainer-name">{{item.userName}}\n</text>
+        <text class="trainer-profile">{{item.userProfile}}</text>
+      </view>
       <button 
         class="reserve-btn" 
         bindtap="onReserve" 
         data-id="{{item.id}}" 
-        style="background-color: {{item.canReserve ? '#1abc9c' : '#555'}};"
-        disabled="{{!item.canReserve}}"
+        style="background-color: {{item.isReserved ? '#bbb' : '#28a745'}}; color: rgb(255, 255, 255); border-radius: 25px; padding: 8px 15px; border: none; box-shadow: {{item.isReserved ? 'none' : '0px 4px 8px rgba(40, 167, 69, 0.2)'}};"
+        disabled="{{false}}"
       >
-        {{item.canReserve ? '预约' : '不可预约'}}
+        {{item.isReserved ? '已预约' : '预约'}}
       </button>
     </view>
   </block>
-</view>
-
-<!-- 重置按钮 -->
-<view class="reset-area">
-  <button class="reset-btn" bindtap="resetData">重置数据</button>
 </view>

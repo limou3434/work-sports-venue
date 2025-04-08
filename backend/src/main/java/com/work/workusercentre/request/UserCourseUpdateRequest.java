@@ -1,6 +1,5 @@
 package com.work.workusercentre.request;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.io.Serial;
@@ -8,13 +7,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class CourseAddRequest implements Serializable {
+public class UserCourseUpdateRequest implements Serializable {
 
-    private String courseName;
+    private Long id; // 这个 id 是用来寻找需要更新的课程的
 
-    private String reserveDate;
+    private Long userId;
 
-    private String reserveTime;
+    private Long courseId;
 
     @Serial
     private static final long serialVersionUID = 1L;

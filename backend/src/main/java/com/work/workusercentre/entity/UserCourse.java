@@ -8,11 +8,11 @@ import lombok.Data;
 
 /**
  * 
- * @TableName course
+ * @TableName user_course
  */
-@TableName(value ="course")
+@TableName(value ="user_course")
 @Data
-public class Course {
+public class UserCourse {
     /**
      * 
      */
@@ -22,20 +22,14 @@ public class Course {
     /**
      * 
      */
-    @TableField(value = "course_name")
-    private String courseName;
+    @TableField(value = "user_id")
+    private Integer userId;
 
     /**
      * 
      */
-    @TableField(value = "reserve_date")
-    private String reserveDate;
-
-    /**
-     * 
-     */
-    @TableField(value = "reserve_time")
-    private String reserveTime;
+    @TableField(value = "course_id")
+    private Integer courseId;
 
     @Override
     public boolean equals(Object that) {
@@ -48,11 +42,10 @@ public class Course {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Course other = (Course) that;
+        UserCourse other = (UserCourse) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getCourseName() == null ? other.getCourseName() == null : this.getCourseName().equals(other.getCourseName()))
-            && (this.getReserveDate() == null ? other.getReserveDate() == null : this.getReserveDate().equals(other.getReserveDate()))
-            && (this.getReserveTime() == null ? other.getReserveTime() == null : this.getReserveTime().equals(other.getReserveTime()));
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getCourseId() == null ? other.getCourseId() == null : this.getCourseId().equals(other.getCourseId()));
     }
 
     @Override
@@ -60,9 +53,8 @@ public class Course {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getCourseName() == null) ? 0 : getCourseName().hashCode());
-        result = prime * result + ((getReserveDate() == null) ? 0 : getReserveDate().hashCode());
-        result = prime * result + ((getReserveTime() == null) ? 0 : getReserveTime().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getCourseId() == null) ? 0 : getCourseId().hashCode());
         return result;
     }
 
@@ -73,9 +65,8 @@ public class Course {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", courseName=").append(courseName);
-        sb.append(", reserveDate=").append(reserveDate);
-        sb.append(", reserveTime=").append(reserveTime);
+        sb.append(", userId=").append(userId);
+        sb.append(", courseId=").append(courseId);
         sb.append("]");
         return sb.toString();
     }

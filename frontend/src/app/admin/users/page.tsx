@@ -3,7 +3,7 @@
 import "./page.css";
 import AdvancedTable from "@/components/AdvancedTable";
 import {userSearch, userUpdate} from "@/api/userController";
-import {Button, Col, Form, Input, message, Modal, Popconfirm, Row} from "antd";
+import {Button, Col, Form, Input, message, Modal, Popconfirm, Row, Tag} from "antd";
 import {useEffect, useState} from "react";
 import type {ProColumns} from "@ant-design/pro-components";
 import {useTranslation} from "react-i18next";
@@ -58,6 +58,30 @@ export default function AdminUsersPage() {
         {
             title: t("user_tags"),
             dataIndex: "userTags",
+            // @ts-ignore
+            render: (text: string) => {
+                // 展示用：解析字符串为多个标签
+                const raw = text?.toString().trim();
+                const trimmed = raw.startsWith("[") && raw.endsWith("]")
+                    ? raw.slice(2, -2)
+                    : raw;
+
+                const tags = trimmed
+                    .split(",")
+                    .map(tag => tag.trim())
+                    .filter(Boolean);
+
+                return (
+                    <>
+                        {tags.map((tag, index) => (
+                            <Tag color="blue" key={index}>
+                                {tag}
+                            </Tag>
+                        ))}
+                    </>
+                );
+            }
+
         },
         {
             title: t("user_nick"),

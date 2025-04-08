@@ -5,16 +5,77 @@ declare namespace API {
     data?: boolean;
   };
 
+  type BaseResponseCourse = {
+    code?: number;
+    message?: string;
+    data?: Course;
+  };
+
+  type BaseResponseListCourse = {
+    code?: number;
+    message?: string;
+    data?: Course[];
+  };
+
   type BaseResponseListLoginUserVO = {
     code?: number;
     message?: string;
     data?: LoginUserVO[];
   };
 
+  type BaseResponseListUserCourse = {
+    code?: number;
+    message?: string;
+    data?: UserCourse[];
+  };
+
   type BaseResponseLoginUserVO = {
     code?: number;
     message?: string;
     data?: LoginUserVO;
+  };
+
+  type BaseResponseLong = {
+    code?: number;
+    message?: string;
+    data?: number;
+  };
+
+  type BaseResponseUserCourse = {
+    code?: number;
+    message?: string;
+    data?: UserCourse;
+  };
+
+  type Course = {
+    id?: number;
+    courseName?: string;
+    reserveDate?: string;
+    reserveTime?: string;
+  };
+
+  type CourseAddRequest = {
+    courseName?: string;
+    reserveDate?: string;
+    reserveTime?: string;
+  };
+
+  type CourseDeleteRequest = {
+    id?: number;
+  };
+
+  type CourseSearchRequest = {
+    sortField?: string;
+    sortOrder?: string;
+    id?: number;
+    courseName?: string;
+  };
+
+  type CourseUpdateRequest = {
+    id?: number;
+    courseName?: string;
+    reserveDate?: string;
+    reserveTime?: string;
   };
 
   type LoginUserVO = {
@@ -55,6 +116,35 @@ declare namespace API {
     userRole?: string;
     userLevel?: number;
     userGender?: number;
+  };
+
+  type UserCourse = {
+    id?: number;
+    userId?: number;
+    courseId?: number;
+  };
+
+  type UserCourseAddRequest = {
+    userId?: number;
+    courseId?: number;
+  };
+
+  type UserCourseDeleteRequest = {
+    id?: number;
+  };
+
+  type UserCourseSearchRequest = {
+    sortField?: string;
+    sortOrder?: string;
+    id?: number;
+    userId?: number;
+    courseId?: number;
+  };
+
+  type UserCourseUpdateRequest = {
+    id?: number;
+    userId?: number;
+    courseId?: number;
   };
 
   type UserDeleteRequest = {

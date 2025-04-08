@@ -92,7 +92,7 @@ export async function userRegister(
   body: API.UserRegisterRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponseBoolean>("/user/register", {
+  return request<API.BaseResponseLong>("/user/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

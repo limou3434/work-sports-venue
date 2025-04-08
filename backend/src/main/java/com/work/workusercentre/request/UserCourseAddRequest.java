@@ -1,6 +1,5 @@
 package com.work.workusercentre.request;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.io.Serial;
@@ -8,13 +7,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class CourseAddRequest implements Serializable {
+public class UserCourseAddRequest implements Serializable {
 
-    private String courseName;
+    private Integer userId;
 
-    private String reserveDate;
-
-    private String reserveTime;
+    private Integer courseId;
 
     @Serial
     private static final long serialVersionUID = 1L;

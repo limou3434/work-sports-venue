@@ -115,7 +115,6 @@ public class UserController { // 通常控制层有服务层中的所有方法, 
      * @return 用户列表, 如果没有查询 id 就会得到所有用户
      */
     @PostMapping("/search")
-    @AuthCheck(mustRole = "admin")
     public BaseResponse<List<LoginUserVO>> userSearch(@RequestBody UserSearchRequest userSearchRequest, HttpServletRequest request) {
 
         // 参数校验
