@@ -1,4 +1,7 @@
 <view class="container">
+  <view class="user-info">
+      <text>方俊杰</text>
+    </view>
   <!-- 页面标题 -->
   <view class="header">
     <text class="title">会员注册</text>

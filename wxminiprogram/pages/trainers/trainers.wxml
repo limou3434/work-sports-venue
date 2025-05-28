@@ -1,4 +1,7 @@
 <view class="trainer-list">
+  <view class="user-info">
+      <text>方俊杰</text>
+    </view>
   <block wx:for="{{trainers}}" wx:key="id">
     <view class="trainer-item">
       <image class="trainer-avatar" src="{{item.userAvatar}}" mode="aspectFill" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px;"></image>

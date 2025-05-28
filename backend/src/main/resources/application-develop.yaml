@@ -8,8 +8,8 @@ spring:
   ## 配置数源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver # "com.mysql.jdbc.Driver" 已经过时
-    url: jdbc:mysql://127.0.0.1:3306/work_user_centre
-    username: wuc
+    url: jdbc:mysql://10.10.174.232:3306/work_collaborative_images
+    username: wci
     password: Qwe54188_
   ## 配置会话
   session:

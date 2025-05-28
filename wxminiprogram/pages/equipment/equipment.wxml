@@ -1,14 +1,60 @@
 <view class="container">
+  <view class="user-info">
+      <text>方俊杰</text>
+    </view>
   <view class="header">
     <text class="title">器械列表</text>
   </view>
+  
+  <!-- 三级联动选择器 -->
+  <view class="filter-container">
+    <view class="filter-row">
+      <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{typeList}}" range-key="name">
+        <view class="filter-item">
+          <text class="filter-label">器材类型:</text>
+          <text class="filter-value">{{typeList[typeIndex].name || '请选择'}}</text>
+          <image class="filter-arrow" src="/images/arrow_down.png"></image>
+        </view>
+      </picker>
+      
+      <picker bindchange="bindPartChange" value="{{partIndex}}" range="{{partList}}" range-key="name">
+        <view class="filter-item">
+          <text class="filter-label">训练部位:</text>
+          <text class="filter-value">{{partList[partIndex].name || '请选择'}}</text>
+          <image class="filter-arrow" src="/images/arrow_down.png"></image>
+        </view>
+      </picker>
+    </view>
+    
+    <view class="filter-row">
+      <picker bindchange="bindPeopleChange" value="{{peopleIndex}}" range="{{peopleList}}" range-key="name">
+        <view class="filter-item">
+          <text class="filter-label">适用人群:</text>
+          <text class="filter-value">{{peopleList[peopleIndex].name || '请选择'}}</text>
+          <image class="filter-arrow" src="/images/arrow_down.png"></image>
+        </view>
+      </picker>
+      
+      <view class="filter-btn" bindtap="resetFilter">
+        <text>重置筛选</text>
+      </view>
+    </view>
+  </view>
 
   <view class="equipment-list">
-    <block wx:for="{{equipmentList}}" wx:key="id">
+    <block wx:for="{{filteredList}}" wx:key="id">
       <view class="equipment-item" bindtap="goToDetail" data-id="{{item.id}}">
         <image class="equipment-icon" src="{{item.icon}}" mode="aspectFit"></image>
         <text class="equipment-name">{{item.name}}</text>
+        <text class="equipment-description">{{item.description}}</text>
       </view>
     </block>
+    
+    <!-- 无数据提示 -->
+    <view wx:if="{{filteredList.length === 0}}" class="no-data">
+      <image src="/images/no_data.png"></image>
+      <text>暂无符合条件的器材</text>
+    </view>
   </view>
 </view>
+  

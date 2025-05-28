@@ -1,5 +1,8 @@
 <view class="container">
   <!-- 欢迎标题 -->
+  <view class="user-info">
+      <text>方俊杰</text>
+    </view>
   <view class="header">
     <text class="title">欢迎使用健身房管理平台</text>
   </view>
