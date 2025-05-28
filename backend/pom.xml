@@ -87,7 +87,6 @@
             <!-- 减少 Java 代码中的样板代码, 自动生成 getter/setter、toString()、equals() -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
 
         <!-- Commons Lang3-->

@@ -1,8 +1,28 @@
 <scroll-view class="scroll-area" scroll-y>
   <!-- 欢迎区域 -->
   <view class="header">
+    <view class="user-info">
+      <text>方俊杰</text>
+    </view>
     <text class="welcome-text">欢迎来到健身房管理平台！</text>
-    <image class="banner" src="/images/banner.png" mode="aspectFill"></image>
+    <swiper
+    class="banner"
+    indicator-dots="true"
+    autoplay="true"
+    interval="3000"
+    duration="500"
+    circular="true"
+  >
+    <swiper-item>
+      <image src="/images/banner.png" mode="aspectFill" class="swiper-image" />
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/banner.png" mode="aspectFill" class="swiper-image" />
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/banner.png" mode="aspectFill" class="swiper-image" />
+    </swiper-item>
+  </swiper>
   </view>
 
   <!-- 功能导航区域 -->
@@ -27,4 +47,28 @@
       <text>蓝牙设备</text>
     </view>
   </view>
+
+  <!-- Canvas组件区域 -->
+  <view class="canvas-area">
+    <text class="canvas-title">获取器材使用数据(canvas)</text>
+    <canvas class="test-canvas" canvas-id="testCanvas"></canvas>
+    <button bindtap="drawOnCanvas">获取</button>
+  </view>
 </scroll-view>
+
+<!-- 公告弹窗 -->
+<view id="notice-modal" class="modal" style="display: none;">
+  <view class="modal-content">
+    <view class="modal-header">
+      <text class="modal-title">公告</text>
+      <button class="close" bindtap="closeNotice">&times;</button>
+    </view>
+    <view class="modal-body">
+      <text>健身房将于本周日进行设备维护，届时将暂停营业，请合理安排您的锻炼时间。</text>
+    </view>
+    <view class="modal-footer">
+      <button class="btn btn-cancel" bindtap="closeNotice">关闭弹窗</button>
+      <button class="btn btn-confirm" bindtap="forbidNotice">禁止弹出</button>
+    </view>
+  </view>
+</view>  
